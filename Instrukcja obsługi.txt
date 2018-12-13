@@ -1,0 +1,7 @@
+INSERT INTO roles(name) VALUES('ROLE_USER');
+INSERT INTO roles(name) VALUES('ROLE_PM');
+INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+
+nale¿y dodaæ te rekordy do bazy danych o nazwie "reportapptest".
+
+Uruchamiamy projekt w springu , nastêpnie projekt angulara po uprzednim utworzeniu go oczywiscie, poniewa¿ repozytorium nie zawiera folderu node_modules.
