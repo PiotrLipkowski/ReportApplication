@@ -19,6 +19,7 @@ import java.util.Optional;
 @RestController
 public class TestRestAPIs {
 
+
     @GetMapping("/api/test/user")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public String userAccess() {
@@ -36,6 +37,8 @@ public class TestRestAPIs {
     public String adminAccess() {
         return ">>> Zawartość administratora";
     }
+
+
 
 
 
