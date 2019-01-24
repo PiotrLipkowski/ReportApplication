@@ -1,35 +1,37 @@
 package reportapplication.demo.Controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reportapplication.demo.Message.response.JwtResponse;
 import reportapplication.demo.Message.request.LoginForm;
 import reportapplication.demo.Message.response.ResponseMessage;
 import reportapplication.demo.Message.request.SignUpForm;
-import reportapplication.demo.Model.Role;
-import reportapplication.demo.Model.RoleName;
-import reportapplication.demo.Model.User;
+import reportapplication.demo.Model.*;
+import reportapplication.demo.Repository.FileRepository;
 import reportapplication.demo.Repository.RoleRepository;
 import reportapplication.demo.Repository.UserRepository;
 import reportapplication.demo.Security.jwt.JwtProvider;
 
 import javax.validation.Valid;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthRestAPIs {
 
     @Autowired
@@ -46,6 +48,8 @@ public class AuthRestAPIs {
 
     @Autowired
     JwtProvider jwtProvider;
+
+
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
@@ -106,4 +110,6 @@ public class AuthRestAPIs {
 
         return new ResponseEntity<>(new ResponseMessage("Użytkownik zarejestrowany pomyśnie!"), HttpStatus.OK);
     }
+
+
 }
