@@ -9,6 +9,21 @@ import reportapplication.demo.Model.FileModel;
 import reportapplication.demo.Repository.FileRepository;
 
 import java.util.ArrayList;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
+import reportapplication.demo.Message.request.LoginForm;
+import reportapplication.demo.Message.response.JwtResponse;
+import reportapplication.demo.Model.FileModel;
+import reportapplication.demo.Model.View;
+import reportapplication.demo.Repository.FileRepository;
+import reportapplication.demo.Security.jwt.JwtProvider;
+
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
