@@ -5,6 +5,7 @@ import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,7 +30,18 @@ public class User{
 
     @NotBlank
     @Size(min=3, max = 50)
+    private String surname;
+
+    @NotBlank
+    @Size(min=3, max = 50)
     private String username;
+
+
+    @NotNull
+    private Integer indeks;
+
+    @NotNull
+    private Integer grupa;
 
     @NaturalId
     @NotBlank
@@ -49,9 +61,12 @@ public class User{
 
     public User() {}
 
-    public User(String name, String username, String email, String password) {
+    public User(String name, String surname, String username, Integer indeks, Integer grupa, String email, String password) {
         this.name = name;
+        this.surname = surname;
         this.username = username;
+        this.indeks = indeks;
+        this.grupa = grupa;
         this.email = email;
         this.password = password;
     }
@@ -102,5 +117,29 @@ public class User{
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public Integer getIndeks() {
+        return indeks;
+    }
+
+    public void setIndeks(Integer indeks) {
+        this.indeks = indeks;
+    }
+
+    public Integer getGrupa() {
+        return grupa;
+    }
+
+    public void setGrupa(Integer grupa) {
+        this.grupa = grupa;
     }
 }

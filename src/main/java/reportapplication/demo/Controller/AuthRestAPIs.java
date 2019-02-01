@@ -9,17 +9,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reportapplication.demo.Message.response.JwtResponse;
 import reportapplication.demo.Message.request.LoginForm;
 import reportapplication.demo.Message.response.ResponseMessage;
 import reportapplication.demo.Message.request.SignUpForm;
-import reportapplication.demo.Model.Role;
-import reportapplication.demo.Model.RoleName;
-import reportapplication.demo.Model.User;
+import reportapplication.demo.Model.*;
 import reportapplication.demo.Repository.RoleRepository;
 import reportapplication.demo.Repository.UserRepository;
 import reportapplication.demo.Security.jwt.JwtProvider;
@@ -30,6 +25,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthRestAPIs {
 
     @Autowired
@@ -46,6 +42,8 @@ public class AuthRestAPIs {
 
     @Autowired
     JwtProvider jwtProvider;
+
+
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
@@ -74,7 +72,7 @@ public class AuthRestAPIs {
         }
 
         // Creating user's account
-        User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(),
+        User user = new User(signUpRequest.getName(), signUpRequest.getSurname(), signUpRequest.getUsername(),signUpRequest.getIndeks(), signUpRequest.getGrupa() , signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()));
 
         Set<String> strRoles = signUpRequest.getRole();
@@ -106,4 +104,6 @@ public class AuthRestAPIs {
 
         return new ResponseEntity<>(new ResponseMessage("Użytkownik zarejestrowany pomyśnie!"), HttpStatus.OK);
     }
+
+
 }

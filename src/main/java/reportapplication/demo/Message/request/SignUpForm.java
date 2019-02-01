@@ -2,6 +2,7 @@ package reportapplication.demo.Message.request;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
@@ -12,7 +13,18 @@ public class SignUpForm {
 
     @NotBlank
     @Size(min = 3, max = 50)
+    private String surname;
+
+    @NotBlank
+    @Size(min = 3, max = 50)
     private String username;
+
+    @NotNull
+    private Integer indeks;
+
+
+    @NotNull
+    private Integer grupa;
 
     @NotBlank
     @Size(max = 60)
@@ -63,5 +75,30 @@ public class SignUpForm {
 
     public void setRole(Set<String> role) {
         this.role = role;
+    }
+
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public Integer getIndeks() {
+        return indeks;
+    }
+
+    public void setIndeks(Integer indeks) {
+        this.indeks = indeks;
+    }
+
+    public Integer getGrupa() {
+        return grupa;
+    }
+
+    public void setGrupa(Integer grupa) {
+        this.grupa = grupa;
     }
 }
